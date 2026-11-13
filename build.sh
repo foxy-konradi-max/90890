@@ -18,7 +18,6 @@ lb config \
     --binary-images iso-hybrid \
     --debian-installer none \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --application FluidOS \
     --iso-volume FluidOS \
     --memtest none \
     --apt-recommends false \
