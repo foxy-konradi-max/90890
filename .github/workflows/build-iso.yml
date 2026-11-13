@@ -1,0 +1,16 @@
+name: Build FluidOS ISO
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Build-Skript ausführen
+        run: |
+          chmod +x build.sh
+          sudo ./build.sh
