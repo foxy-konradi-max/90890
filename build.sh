@@ -18,7 +18,7 @@ lb config \
   --iso-volume FluidOS \
   --memtest none \
   --apt-recommends false \
-  --chroot-squashfs-compression-type zstd \
+
   --bootappend-live "boot=live components quiet splash locales=de_DE.UTF-8 keyboard-layouts=de timezone=Europe/Berlin"
 
 lb build
