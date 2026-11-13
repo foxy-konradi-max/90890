@@ -5,8 +5,10 @@ set -eu
 
 cd "$(dirname "$0")"
 
-# Dateirechte setzen (beide Hochkomma in Browser gehen sie verloren)
-chmod +x config/hooks/live/* .chroot config/includes.chroot/usr/local/bin/*
+# Dateirechte absichern (Verzeichnisse vorher anlegen, damit chmod nicht fehlschlägt)
+mkdir -p config/includes.chroot/usr/local/bin config/hooks/live
+[ -d config/hooks/live ] && chmod +x config/hooks/live/* 2>/dev/null || true
+[ -d config/includes.chroot/usr/local/bin ] && chmod +x config/includes.chroot/usr/local/bin/* 2>/dev/null || true
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -25,9 +27,8 @@ lb config \
 lb build
 
 # Verify that live-build actually produced a bootable ISO artifact.
-set -.iso
+set -- *.iso
 if [ ! -f "$1" ]; then
     echo "FEHLER: live-build hat keine ISO-Datei erzeugt." >&2
     exit 1
-fi
 fi
